@@ -1,8 +1,6 @@
 var io = require('socket.io').listen(8001);
 var redis = require("redis");
 
-var chat = io
-
 io.of('/notifications').
 on('connection', function (socket) {
 
@@ -23,7 +21,7 @@ on('connection', function (socket) {
       // connection per channel/user)
       socket.redisClient.on("message", function(channel, message) {
         console.log(channel + ': ' + message);
-        socket.emit('notification', channel, message)
+        socket.emit('notification', channel, message);
       });
 
     });
